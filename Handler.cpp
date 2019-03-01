@@ -9,7 +9,7 @@ Handler::Handler()
     while (getline(file, line))
         ++userCount;
 
-    cout << userCount;
+    //cout << userCount;
     filename = "Users.txt";
     file.close();
 }
@@ -33,11 +33,11 @@ User* Handler::getUser(int){
 return nullptr;
 }
 
-User** Handler::getAllUsers(){
+string* Handler::getAllUsers(){
 
     file.open("Users.txt");
     string line;
-    
+    string arr[100];
     if (file){
 
         cout << "\n=============== Users ==============="<< endl;
@@ -57,10 +57,12 @@ User** Handler::getAllUsers(){
         temp.user = "ID:"+ to_string(temp.id) + " "+temp.name +" "+ temp.number;
 
         cout << temp.user << endl;
+        arr[count]= temp.user;
         count++;
     }
  }
 file.close();
 
-return nullptr;
+return arr;
+//return nullptr;
 }

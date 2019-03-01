@@ -33,7 +33,8 @@ class Handler{
         bool addUser(string,string);
         bool deleteUser(int);
         User* getUser(int);
-        User** getAllUsers();
+        //User** getAllUsers();
+        string* getAllUsers();
 };
 
 

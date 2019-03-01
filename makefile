@@ -1,8 +1,8 @@
 main: 	*.o
-	g++ -static -g  main.cpp Handler.o User.o -o main
+	g++ -static -g -w server.cpp Handler.o User.o -o main
 
 *.o: *.h *.cpp
-	g++ -c -g -Wall *.cpp
+	g++ -c -g -w *.cpp
 
 run:
 	./main
