@@ -183,10 +183,12 @@ int main(int argc, char * argv[])
           else if(arr[0] == "2")
           {
             string* t = h->getAllUsers();
-            
+            cout<<"done getting users"<<endl;
             // const char* tempor = h->getAllUsers();
             // send(sd,tempor,strlen(tempor),0);
           }
+
+          //Place for delete and update
         }
       }
       f++;

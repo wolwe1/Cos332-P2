@@ -1,13 +1,31 @@
 #include "User.h"
 
-User::User(string name_,string number_,int id_,string filename)
+User::User(string name_,string number_,int id_)
 {
     name = name_;
     number = number_;
     id = id_;
+}
 
+void User::write(string filename){
     file.open(filename, std::ios_base::app);
     file <<id<<" "<<name<<" "<<number << endl;
+}
+
+string User::print(){
+    string str = "ID:"+to_string(id)+" Name:"+name+" Number:"+number;
+    
+    return str;
+}
+
+int User::getId(){
+    return this->id;
+}
+
+bool User::changeDetails(string name,string num){
+    this->name = name;
+    this->number = num;
+    return true;
 }
 
 User::~User()

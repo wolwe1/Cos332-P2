@@ -5,6 +5,7 @@
 #include <iostream>
 #include "User.h"
 #include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -14,17 +15,7 @@ class Handler{
         int userCount;
         string filename;
         ifstream file;
-
-        struct tempUser
-        {
-            int id;
-            string name;
-            string number;
-            string user;
-        };
-
-        tempUser temp;
-        
+        vector<User*> users;
     
     public:
         Handler();
@@ -33,8 +24,10 @@ class Handler{
         bool addUser(string,string);
         bool deleteUser(int);
         User* getUser(int);
-        //User** getAllUsers();
+        vector<User*> loadUsers();
         string* getAllUsers();
+        bool rewriteFile();
+        bool updateUser(int,string,string);
 };
 
 

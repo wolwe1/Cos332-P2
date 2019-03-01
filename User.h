@@ -15,7 +15,11 @@ private:
     ofstream file;
 
 public:
-    User(string,string,int,string);
+    User(string,string,int);
+    void write(string );
+    string print();
+    int getId();
+    bool changeDetails(string,string);
     ~User();
 
 };
