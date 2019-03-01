@@ -19,6 +19,9 @@ public:
     void write(string );
     string print();
     int getId();
+    string getName();
+    string getNumber();
+    string getAllDetails();
     bool changeDetails(string,string);
     ~User();
 
