@@ -38,7 +38,8 @@ int main(int argc, char * argv[])
   fd_set readfds;
 
   //Welcome message to all that join the server
-  char * WelcomeMessage = "\u001b[35;1m Welcome to COS 332 Practical Two\n **********MENU**********\n1. Enter '1 user number' to insert an user\n2. Enter '2' to get a list of all numbers stored\n3. Enter '3 name' to retrieve the specific user details\n4. Enter '4 userId' to remove the user\n5. Enter '5 userId name number' to update user details\n\u001b[0m";
+  //char * WelcomeMessage = "\u001b[35;1m Welcome to COS 332 Practical Two\n **********MENU**********\n1. Enter '1 user number' to insert an user\n2. Enter '2' to get a list of all numbers stored\n3. Enter '3 name' to retrieve the specific user details\n4. Enter '4 userId' to remove the user\n5. Enter '5 userId name number' to update user details\nEnter 'h' to display menu\n\u001b[0m";
+  char * WelcomeMessage = "\u001b[35;1m Welcome to COS 332 Practical Two\n **********MENU**********\n1. INSERT:\t'1 user number'\n2. DISPLAY ALL \t'2'\n3. GET USER \t'3 name'\n4. DELETE \t'4 userId'\n5. UPDATE \t'5 userId name number' \n6. HELP \t'h'\n\u001b[0m";
   char * receivedMessage = "The server received the following input: ";
   int lengthOfReceivedMessage = strlen(receivedMessage);
 
@@ -208,6 +209,7 @@ int main(int argc, char * argv[])
           else if(arr[0]=="5")
           {
             //update the user
+            cout<<"\u001b[32;1m"<<"arr[1]"<<arr[1]<<endl;
             int n = stoi(arr[1]);
             string name =arr[2];
             string sur = arr[3];
@@ -221,6 +223,8 @@ int main(int argc, char * argv[])
               cout<<"\u001b[31m An error occured while trying to update the user"<<endl;
 
             }
+          }else if(arr[0] == "h"){
+            send(sd, WelcomeMessage, strlen(WelcomeMessage), 0);
           }
         }
       }

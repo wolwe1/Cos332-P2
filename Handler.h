@@ -24,6 +24,7 @@ class Handler{
         int userCount;
         string filename;
         ifstream file;
+        int currentId;
 
         // struct tempUser
         // {

@@ -4,6 +4,7 @@ Handler::Handler()
 {
     string line;
     userCount = 0;
+    currentId = 0;
 
     file.open("Users.txt");
     while (getline(file, line))
@@ -13,6 +14,7 @@ Handler::Handler()
     filename = "Users.txt";
     file.close();
     loadUsers();
+    currentId++;
 }
 
 Handler::~Handler()
@@ -21,7 +23,8 @@ Handler::~Handler()
 
 bool Handler::addUser(string name,string num){
 
-    User* newUser = new User(name,num,userCount++);
+    User* newUser = new User(name,num,currentId++);
+    userCount++;
     newUser->write(filename);
     delete newUser;
     return true;
@@ -34,7 +37,8 @@ bool Handler::deleteUser(int id,int sd)
     for(;it < users.end();it++){
         if((*it)->getId() == id){
             users.erase(it);
-            
+            userCount--;
+
             if(rewriteFile())
             {
                 char* a= "\u001b[32;1m User has been deleted\n\u001b[0m";
@@ -111,7 +115,7 @@ User* Handler::getAllUsers(int sd){
 
     loadUsers();
     vector<User*>::iterator it = users.begin();
-    char * arr ="\u001b[36m=============== Users ===============\n";
+    char * arr ="\u001b[36m\n=============== Users ===============\n";
     char* newline="\n\u001b[0m";
     cout << "\u001b[36m\n=============== Users ==============="<< endl;
 
@@ -163,7 +167,7 @@ User* Handler::getAllUsers(int sd){
 
 bool Handler::rewriteFile(){
 
-    loadUsers();
+    //loadUsers();
     file.open(filename,ofstream::out | std::ofstream::trunc); //Clear file
     file.close();
     
@@ -216,6 +220,9 @@ vector<User*> Handler::loadUsers(){
 
         file >> line;
         id = stoi(line);
+
+        if(id > currentId)
+        currentId = id;
 
         file >> line;
         data = line;
